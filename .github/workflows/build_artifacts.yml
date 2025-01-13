@@ -1,0 +1,18 @@
+name: Build Runtime Artifacts
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: install mandatory packages
+        run: sudo apt-get -y install git sed binutils build-essential diffutils patch gzip bzip2 perl tar cpio unzip rsync file bc wget findutils libncursesw5-dev ssh
+      - name: build artifacts
+        run: mkdir priv; cd builder; ./build.sh configs/nerves_flutter_support_aarch64_defconfig
