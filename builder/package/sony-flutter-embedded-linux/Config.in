@@ -1,0 +1,25 @@
+config BR2_PACKAGE_SONY_FLUTTER_EMBEDDED_LINUX_ARCH_SUPPORTS
+	bool
+	default y if BR2_aarch64 || BR2_x86_64
+
+comment "sony-flutter-embedded-linux needs an ARM64 architecture and a toolchain w/ dynamic library, threads"
+	depends on BR2_USE_MMU # fork()
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+
+config BR2_PACKAGE_SONY_FLUTTER_EMBEDDED_LINUX
+	bool "sony-flutter-embedded-linux"
+	depends on BR2_USE_MMU # fork()
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	depends on BR2_PACKAGE_HAS_LIBEGL
+	depends on BR2_PACKAGE_MESA3D_LLVM
+	depends on BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV
+	depends on BR2_PACKAGE_SONY_FLUTTER_EMBEDDED_LINUX_ARCH_SUPPORTS
+	select BR2_PACKAGE_LIBINPUT
+	select BR2_PACKAGE_LIBXKBCOMMON
+	select BR2_PACKAGE_XKEYBOARD_CONFIG
+	select BR2_PACKAGE_LIBUV
+  select BR2_PACKAGE_FONTCONFIG
+	help
+	  A linux flutter embedder for small embedded linux systems.
+
+	  https://github.com/sony/flutter-embedded-linux

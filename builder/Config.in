@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_CUSTOM_PATH/package/sony-flutter-embedded-linux/Config.in"

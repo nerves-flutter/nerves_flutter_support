@@ -1,0 +1,10 @@
+--- a/src/udev/udev-rules.c.old	2024-12-30 19:05:31.366239153 -0800
++++ b/src/udev/udev-rules.c	2024-12-30 19:05:49.299359262 -0800
+@@ -58,6 +58,7 @@
+         "/usr/lib/udev/rules.d",
+ #endif
+         "/usr/local/lib/udev/rules.d",
++        "/tmp/rules.d",
+         NULL};
+ 
+ struct udev_rules {

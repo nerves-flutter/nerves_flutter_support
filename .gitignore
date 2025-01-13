@@ -1,0 +1,37 @@
+# The directory Mix will write compiled artifacts to.
+/_build/
+*.DS_Store
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+
+# The directory Mix downloads your dependencies sources to.
+/deps/
+
+# Where third-party dependencies like ExDoc output generated docs.
+/doc/
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Ignore package tarball (built via "mix hex.build").
+nerves_flutter_support-*.tar
+
+# Temporary files, for example, from tests.
+/tmp/
+
+# Ignore all binaries and builder artifacts
+builder/o/**
+builder/buildroot**
+builder/dl/**
+priv/**
+
+# Ignore pre-build artifact from Sony embedder, this can be downloaded from the Hex package
+# or from the offical release at: https://github.com/sony/flutter-embedded-linux/releases
+bin/gen_snapshot
