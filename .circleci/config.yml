@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  build_artifacts:
+    machine:
+      resource_class: nerves-flutter/flutter-builders
+    steps:
+      - checkout
+      - run:
+          environment:
+            DEBIAN_FRONTEND: noninteractive
+            TZ: Etc/UTC
+          name: Install Buildroot Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y git sed binutils build-essential diffutils patch gzip bzip2 perl tar cpio unzip rsync file bc wget findutils libncursesw5-dev ssh
+
+      - run:
+          name: Build Runtime Artifacts
+          command: |
+            mkdir priv
+            cd builder
+            ./build.sh configs/nerves_flutter_support_aarch64_defconfig
+
+      - store_artifacts:
+          path: priv/
+          destination: runtime-artifacts
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - hold:
+          type: approval
+          filters:
+            branches:
+              only:
+                - main
+      - build_artifacts:
+          requires:
+            - hold
+          filters:
+            branches:
+              only:
+                - main
