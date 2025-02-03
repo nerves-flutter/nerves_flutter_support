@@ -22,8 +22,12 @@ jobs:
             cd builder
             ./build.sh configs/nerves_flutter_support_aarch64_defconfig
 
+      - run:
+          name: Compress Artifacts
+          command: tar -cvzf nerves_flutter_support_artifacts_$(cat VERSION).tar priv/
+
       - store_artifacts:
-          path: priv/
+          path: nerves_flutter_support_artifacts_$(cat VERSION).tar
           destination: runtime-artifacts
 
 workflows:
