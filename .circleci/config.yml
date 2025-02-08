@@ -24,10 +24,10 @@ jobs:
 
       - run:
           name: Compress Artifacts
-          command: tar -cvzf nerves_flutter_support_artifacts_$(cat VERSION).tar priv/
+          command: tar -cvzf nerves_flutter_support_artifacts.tar priv/
 
       - store_artifacts:
-          path: nerves_flutter_support_artifacts_$(cat VERSION).tar
+          path: nerves_flutter_support_artifacts.tar
           destination: runtime-artifacts
 
 workflows:
