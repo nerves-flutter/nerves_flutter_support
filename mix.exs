@@ -20,6 +20,7 @@ defmodule NervesFlutterSupport.MixProject do
 
   defp deps do
     [
+      {:jason, "~> 1.4.0"},
       {:muontrap, "~> 1.5.0"},
       {:input_event, "~> 1.4.0"},
       {:nerves_time_zones, "~> 0.3.0"},

@@ -9,11 +9,11 @@
 HOST_OS=$(uname -s)
 HOST_ARCH=$(uname -m)
 
-FLUTTER_SDK=$(dirname $(which flutter))
 RESULT_DIR=build/linux-embedded-arm64
 BUILD_MODE=release
 SELF_PATH=$1
 APP_PACKAGE_NAME=$2
+FLUTTER_SDK=$3
 
 # If we're on macOS or Linux non-x86_64 we need to use Docker to emulate x86_64
 # this will be slower, but it still allows AOT builds. This is a limitation of Dart.

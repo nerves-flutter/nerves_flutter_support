@@ -16,4 +16,4 @@ COPY bin/build_aot.sh /tools/bin
 COPY bin/gen_snapshot /tools/bin
 
 WORKDIR /data
-ENTRYPOINT /tools/bin/build_aot.sh /tools ${APP_PACKAGE_NAME}
+ENTRYPOINT /tools/bin/build_aot.sh /tools ${APP_PACKAGE_NAME} /flutter/bin
