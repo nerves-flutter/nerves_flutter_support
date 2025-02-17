@@ -24,8 +24,8 @@ defmodule NervesFlutterSupport.Udev do
   @doc """
   Returns a `child_spec()` that monitors the eudev daemon
   """
-  @spec create_child() :: Supervisor.child_spec()
-  def create_child() do
+  @spec create_child(list()) :: Supervisor.child_spec()
+  def create_child(args) do
     # Ensure that the symlink to the udev rules are present
     # Our `eudevd` is patched to look at `/tmp/rules.d` as an additional
     # directory to load from.
@@ -46,7 +46,7 @@ defmodule NervesFlutterSupport.Udev do
       {MuonTrap.Daemon,
        [
          get_udevd_path(),
-         [],
+         args,
          [
            name: :eudev_daemon,
            stderr_to_stdout: true,
