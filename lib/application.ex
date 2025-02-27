@@ -6,14 +6,20 @@ defmodule NervesFlutterSupport.Application do
   use Application
 
   def start(_type, _args) do
+    opts = [strategy: :one_for_one, name: NervesFlutterSupport.Supervisor]
+    Supervisor.start_link(children(Nerves.Runtime.mix_target()), opts)
+  end
+
+  defp children(:host) do
+    []
+  end
+
+  defp children(_target) do
     eudev_args = Application.get_env(:nerves_flutter_support, :eudev_args, [])
 
-    children = [
+    [
       # We always need to start the eudev background process
       NervesFlutterSupport.Udev.create_child(eudev_args)
     ]
-
-    opts = [strategy: :one_for_one, name: NervesFlutterSupport.Supervisor]
-    Supervisor.start_link(children, opts)
   end
 end

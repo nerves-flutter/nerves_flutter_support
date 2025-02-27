@@ -5,6 +5,9 @@ defmodule NervesFlutterSupport.BuildFlutterApp do
   It also aids in compiling them into an AOT application for optimal perf on the target.
   """
 
+  alias NervesFlutterSupport.ToolInstaller
+  alias NervesFlutterSupport.Util
+
   def run(%Mix.Release{} = release) do
     if System.get_env("SKIP_FLUTTER_BUILD", nil) != nil do
       Mix.shell().info(
@@ -13,6 +16,7 @@ defmodule NervesFlutterSupport.BuildFlutterApp do
 
       release
     else
+      ToolInstaller.perform_checks()
       build_flutter_app(release)
     end
   end
@@ -59,18 +63,10 @@ defmodule NervesFlutterSupport.BuildFlutterApp do
     Mix.shell().info("SDK Path: #{sdk_dir}")
     Mix.shell().info("")
 
-    # This computes the path to the directory of `nerves_flutter_support`
-    self_path =
-      __ENV__.file
-      |> Path.dirname()
-      |> Path.split()
-      |> List.delete_at(-1)
-      |> Path.join()
-
-    script_path = Path.join(self_path, ["bin/", "build_aot.sh"])
+    script_path = Path.join(Util.self_path(), ["bin/", "build_aot.sh"])
 
     # Attempt to run the AOT build script for packaging up the app into a fw release
-    case System.cmd(script_path, [self_path, pub_name, sdk_bin_dir],
+    case System.cmd(script_path, [Util.self_path(), pub_name, sdk_bin_dir],
            cd: flutter_dir,
            into: IO.stream()
          ) do

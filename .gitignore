@@ -31,7 +31,9 @@ builder/o/**
 builder/buildroot**
 builder/dl/**
 priv/**
+.tools/**
 
 # Ignore pre-build artifact from Sony embedder, this can be downloaded from the Hex package
 # or from the offical release at: https://github.com/sony/flutter-embedded-linux/releases
 bin/gen_snapshot
+bin/.gen_snapshot_hash
