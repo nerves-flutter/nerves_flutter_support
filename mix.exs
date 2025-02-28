@@ -6,6 +6,7 @@ defmodule NervesFlutterSupport.MixProject do
       app: :nerves_flutter_support,
       version: "0.1.0",
       elixir: "~> 1.17",
+      compilers: Mix.compilers() ++ [:nerves_flutter_support],
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
