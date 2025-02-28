@@ -63,7 +63,6 @@ defmodule NervesFlutterSupport.Flutter.Engine do
   end
 
   defp create_flutter_env(additional_env) do
-    # TODO: Allow the parent project to add to this this env map
     %{
       "ON_EMBEDDED_DEVICE" => "1",
       "XKB_CONFIG_ROOT" => get_xkb_path(),
