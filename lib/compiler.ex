@@ -5,6 +5,11 @@ defmodule Mix.Tasks.Compile.NervesFlutterSupport do
   alias NervesFlutterSupport.ToolInstaller
   use Mix.Task
 
+  def __mix_recompile__? do
+    ToolInstaller.perform_checks()
+    true
+  end
+
   def run(_args) do
     ToolInstaller.perform_checks()
     :ok
