@@ -73,7 +73,7 @@ defmodule NervesFlutterSupport.ToolInstaller do
     self_path = Util.self_path() |> to_charlist()
 
     if File.exists?(priv_path) do
-      File.rmdir!(priv_path)
+      File.rm_rf!(priv_path)
     end
 
     :erl_tar.extract({:binary, archive_binary}, [
