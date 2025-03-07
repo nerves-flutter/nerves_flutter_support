@@ -27,6 +27,8 @@ defmodule NervesFlutterSupport.Flutter.Engine do
     `:env` - A map of additions environment variables to set when launching the Flutter engine.
             `%{binary() => binary()}`
 
+    `:args` - A list of strings of extra command line arguments to pass to the Flutter embedder.
+
     `:bundle_path` - A string that's a path to an AOT Flutter bundle. This will override the computed
                      path from `:app_name`.
   """
@@ -35,8 +37,9 @@ defmodule NervesFlutterSupport.Flutter.Engine do
     app_name = Keyword.get(args, :app_name)
     bundle_path = Keyword.get(args, :bundle_path)
     additional_env = Keyword.get(args, :env, %{})
+    additional_args = Keyword.get(args, :args, [])
     bin_path = get_embedder_path()
-    args = create_flutter_args(app_name, bundle_path)
+    args = create_flutter_args(app_name, bundle_path) ++ additional_args
     env = create_flutter_env(additional_env)
 
     Logger.debug("Flutter Env: #{inspect(env)}")
@@ -80,7 +83,7 @@ defmodule NervesFlutterSupport.Flutter.Engine do
 
   defp create_flutter_args(_app_name, path) when is_binary(path) do
     Logger.warning("Loading Flutter asset bundle from directory: #{path}")
-    path
+    ["--bundle=#{path}"]
   end
 
   defp get_embedder_path() do
