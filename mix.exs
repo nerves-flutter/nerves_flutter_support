@@ -4,8 +4,8 @@ defmodule NervesFlutterSupport.MixProject do
   def project do
     [
       app: :nerves_flutter_support,
-      version: "1.0.0",
-      description: "https://github.com/nerves-flutter/nerves_flutter_support",
+      version: "1.0.1",
+      description: "Supporting libraries and runtime engine for Flutter on Nerves.",
       elixir: "~> 1.17",
       compilers: Mix.compilers() ++ [:nerves_flutter_support],
       start_permanent: Mix.env() == :prod,
@@ -24,7 +24,7 @@ defmodule NervesFlutterSupport.MixProject do
       name: :nerves_flutter_support,
       licenses: ["Apache-2.0"],
       files:
-        ~w(lib LICENSE VERSION FLUTTER_ENGINE_HASH .tool-versions .formatter.exs mix.exs README.md bin/build_aot.sh),
+        ~w(lib docker LICENSE VERSION FLUTTER_ENGINE_HASH .tool-versions .formatter.exs mix.exs README.md bin/build_aot.sh),
       links: %{
         "Github" => "https://github.com/nerves-flutter/nerves_flutter_support"
       }
