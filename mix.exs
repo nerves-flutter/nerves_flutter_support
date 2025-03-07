@@ -4,11 +4,30 @@ defmodule NervesFlutterSupport.MixProject do
   def project do
     [
       app: :nerves_flutter_support,
-      version: "0.1.0",
+      version: "1.0.0",
+      description: "https://github.com/nerves-flutter/nerves_flutter_support",
       elixir: "~> 1.17",
       compilers: Mix.compilers() ++ [:nerves_flutter_support],
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: [
+        main: "readme",
+        extras: ["README.md"]
+      ],
+      package: package()
+    ]
+  end
+
+  def package do
+    [
+      maintainers: ["Digit"],
+      name: :nerves_flutter_support,
+      licenses: ["Apache-2.0"],
+      files:
+        ~w(lib LICENSE VERSION FLUTTER_ENGINE_HASH .tool-versions .formatter.exs mix.exs README.md bin/build_aot.sh),
+      links: %{
+        "Github" => "https://github.com/nerves-flutter/nerves_flutter_support"
+      }
     ]
   end
 
@@ -26,7 +45,8 @@ defmodule NervesFlutterSupport.MixProject do
       {:muontrap, "~> 1.5.0"},
       {:nerves_runtime, "~> 0.13.0"},
       {:nerves_time_zones, "~> 0.3.0"},
-      {:yaml_elixir, "~> 2.11"}
+      {:yaml_elixir, "~> 2.11"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 end
