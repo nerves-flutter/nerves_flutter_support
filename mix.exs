@@ -42,7 +42,7 @@ defmodule NervesFlutterSupport.MixProject do
     [
       {:castore, "~> 1.0"},
       {:jason, "~> 1.4.0"},
-      {:muontrap, "~> 1.5.0"},
+      {:muontrap, "~> 1.6.0"},
       {:nerves_runtime, "~> 0.13.0"},
       {:nerves_time_zones, "~> 0.3.0"},
       {:yaml_elixir, "~> 2.11"},
