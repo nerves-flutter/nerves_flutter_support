@@ -1,6 +1,6 @@
 # nerves_flutter_support
 
-![Static Badge](https://img.shields.io/badge/Flutter%20Version-v3.72.2-cyan?style=plastic&labelColor=black&color=blue)
+![Static Badge](https://img.shields.io/badge/Flutter%20Version-v3.27.2-cyan?style=plastic&labelColor=black&color=blue)
 
 > ⚠️ NOTE: This is a fairly new project. Functionally everything is working on _tested_ Nerves systems.
 
