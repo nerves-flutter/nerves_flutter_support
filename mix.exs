@@ -4,7 +4,7 @@ defmodule NervesFlutterSupport.MixProject do
   def project do
     [
       app: :nerves_flutter_support,
-      version: "1.0.3",
+      version: "1.0.4",
       description: "Supporting libraries and runtime engine for Flutter on Nerves.",
       elixir: "~> 1.17",
       compilers: Mix.compilers() ++ [:nerves_flutter_support],
