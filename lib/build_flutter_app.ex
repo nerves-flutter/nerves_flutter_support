@@ -38,13 +38,16 @@ defmodule NervesFlutterSupport.BuildFlutterApp do
 
   defp build_flutter_app(%Mix.Release{options: options} = release) do
     # Compute directories that point to the flutter project and passed in options
+    flutter_options = Keyword.get(options, :flutter, [])
     project_dir = Mix.Project.project_file() |> Path.dirname()
     sdk_dir = get_flutter_sdk_path()
     sdk_bin_dir = Path.join(sdk_dir, "bin/")
-    flutter_dir = Keyword.get(options, :project_dir, Path.join(project_dir, "flutter_app/"))
+
+    flutter_dir =
+      Keyword.get(flutter_options, :project_dir, Path.join(project_dir, "flutter_app/"))
 
     output_priv_dir =
-      Keyword.get(options, :output_dir, Path.join(project_dir, "priv/flutter_app/"))
+      Keyword.get(flutter_options, :output_dir, Path.join(project_dir, "priv/flutter_app/"))
 
     flutter_output_dir =
       Path.join(flutter_dir, ["build/", "linux-embedded-arm64/", "release/", "bundle/"])

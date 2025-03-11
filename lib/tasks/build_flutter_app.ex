@@ -20,8 +20,7 @@ defmodule Mix.Tasks.Flutter.BuildAot do
 
     BuildFlutterApp.run(%Mix.Release{
       options: [
-        project_dir: project_dir,
-        output_dir: output_dir
+        flutter: [project_dir: project_dir, output_dir: output_dir]
       ]
     })
   end
