@@ -14,9 +14,10 @@ NervesFlutterSupport contains the following components:
 
 * Pre-compiled and patched runtime libraries for various dependencies. (See `builder/` for more info.)
   * Including a pre-compiled version of Sony's open source [Flutter Embedder](https://github.com/sony/flutter-embedded-linux).
-* A [Mix Release Step](https://hexdocs.pm/mix/1.18.2/Mix.Tasks.Release.html#module-steps) that can be included in your existing Mix project.
+* A pair of [Mix Release Steps](https://hexdocs.pm/mix/1.18.2/Mix.Tasks.Release.html#module-steps) that can be included in your existing Mix project.
   * Takes care of downloading the Flutter [embedder](https://github.com/sony/flutter-embedded-linux) and runtime libraries.
   * Will automatically compile your Flutter project using the `gen_snapshot` tool and output an AOT build.
+  * Will help copy the runtime artifacts from the dependency source directory to the release directory at compile time.
 * `NervesFlutterSupport.Flutter.Engine` - A module to create a [Muontrap](https://hexdocs.pm/muontrap/readme.html) child_spec for running the embedder.
 * `NervesFlutterSupport.Udev` - (Automatically started for you) A module that ensure `eudevd` is running for input devices to function properly.
 
@@ -40,11 +41,12 @@ Please file any issues if you run into any problems with your ARM64 platform. We
 1. Install [Flutter](https://docs.flutter.dev/get-started/install). See the top of this readme file for which version to use. (Flutter versions may change with Hex package versions!)
 2. Create a new Flutter app in your Mix project using: `flutter create flutter_app`.
 3. Add this package to your `deps` in `mix.exs`.
-4. Add the release step to your existing firmware's `steps:` member:
+4. Add the release steps to your existing firmware's `steps:`:
   ```elixir
     steps: [
       &Nerves.Release.init/1,
-      &NervesFlutterSupport.BuildFlutterApp.run/1, # Add Me!
+      &NervesFlutterSupport.InstallRuntime.run/1, # REQUIRED!! - Add this to install runtime artifacts into the release!
+      &NervesFlutterSupport.BuildFlutterApp.run/1, # OPTIONAL - Add this if you want to auto-compile a flutter app!
       :assemble
     ],
   ```
