@@ -11,7 +11,13 @@ defmodule NervesFlutterSupport.InstallRuntime do
   alias NervesFlutterSupport.Util
 
   def run(%Mix.Release{} = release) do
-    :ok = ToolInstaller.perform_checks()
+    if System.get_env("NERVES_FLUTTER_SKIP_TOOL_INSTALL") == nil do
+      :ok = ToolInstaller.perform_checks()
+    else
+      Mix.shell().info(
+        "NERVES_FLUTTER_SKIP_TOOL_INSTALL was set! This will skip downloading runtime artficats..."
+      )
+    end
 
     release_path =
       release.applications |> Map.get(:nerves_flutter_support, []) |> Keyword.get(:path)
