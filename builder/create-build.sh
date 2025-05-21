@@ -14,7 +14,7 @@
 set -e
 #set -x
 
-BUILDROOT_VERSION=2024.02.6
+BUILDROOT_VERSION=2025.02.1
 
 DEFCONFIG=$1
 BUILD_DIR=$2
@@ -99,6 +99,9 @@ create_buildroot_dir() {
 
     # Download and extract Buildroot
     "$BASE_DIR/scripts/download-buildroot.sh" $BUILDROOT_VERSION $BUILDROOT_DL_DIR $BASE_DIR
+
+    # Apply buildroot specific patches to keep in sync with Nerves systems
+    "$BASE_DIR"/buildroot/support/scripts/apply-patches.sh "$BASE_DIR/buildroot" "$BASE_DIR/br_patches"
 
     if ! [[ -z $BUILDROOT_DL_DIR ]]; then
         # Symlink Buildroot's dl directory so that it can be cached between builds
