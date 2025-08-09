@@ -2,9 +2,9 @@ name: Build Runtime Artifacts
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "digit/gh-actions-again"]
   pull_request:
-    branches: ["main"]
+    branches: ["main", "digit/gh-actions-again"]
 
 jobs:
   build:
