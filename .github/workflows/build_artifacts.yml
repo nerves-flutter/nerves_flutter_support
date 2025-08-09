@@ -16,7 +16,8 @@ jobs:
       - name: archive artifacts
         run: tar -cvzf nerves_flutter_support_artifacts.tar priv/
       - name: store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nerves_flutter_runtime_artifacts
           path: nerves_flutter_support_artifacts.tar
+          overwrite: true
