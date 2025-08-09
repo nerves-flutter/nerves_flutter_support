@@ -1,6 +1,7 @@
 name: Build Runtime Artifacts
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,4 +18,5 @@ jobs:
       - name: store artifacts
         uses: actions/upload-artifact@v3
         with:
+          name: nerves_flutter_runtime_artifacts
           path: nerves_flutter_support_artifacts.tar
