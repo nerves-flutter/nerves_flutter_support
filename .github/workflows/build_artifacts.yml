@@ -1,10 +1,6 @@
 name: Build Runtime Artifacts
 
-on:
-  push:
-    branches: ["main", "digit/gh-actions-again"]
-  pull_request:
-    branches: ["main", "digit/gh-actions-again"]
+on: workflow_dispatch
 
 jobs:
   build:
@@ -16,3 +12,9 @@ jobs:
         run: sudo apt-get -y install git sed binutils build-essential diffutils patch gzip bzip2 perl tar cpio unzip rsync file bc wget findutils libncursesw5-dev ssh
       - name: build artifacts
         run: mkdir priv; cd builder; ./build.sh configs/nerves_flutter_support_aarch64_defconfig
+      - name: archive artifacts
+        run: tar -cvzf nerves_flutter_support_artifacts.tar priv/
+      - name: store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: nerves_flutter_support_artifacts.tar
