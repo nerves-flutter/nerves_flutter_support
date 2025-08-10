@@ -3,7 +3,7 @@ RUN apt update
 RUN apt install -y wget curl xz-utils git
 RUN git config --global --add safe.directory /flutter
 
-ENV FLUTTER_VERSION="3.29.3"
+ENV FLUTTER_VERSION="3.32.8"
 RUN wget --no-verbose https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$FLUTTER_VERSION-stable.tar.xz
 RUN tar xf flutter_linux_$FLUTTER_VERSION-stable.tar.xz -C /
 ENV PATH="$PATH:/flutter/bin"
