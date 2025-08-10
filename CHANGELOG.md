@@ -2,6 +2,12 @@
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.0
+
+* Changes
+  * Bump Flutter to `3.32.8-stable`, engine hash `ef0cd00091`.
+  * Update CI workflows to use GH Actions.
+
 ## v1.2.0
 
 * Changes
