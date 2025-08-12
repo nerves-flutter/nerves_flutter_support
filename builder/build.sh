@@ -48,6 +48,7 @@ cp o/$base/target/lib/libudev.so* ../priv/lib
 cp o/$base/target/usr/lib/libuv.so* ../priv/lib
 cp o/$base/target/usr/lib/libxkbcommon.so* ../priv/lib
 cp o/$base/target/usr/lib/libkmod.so* ../priv/lib
+cp o/$base/target/usr/lib/libfontconfig.so* ../priv/lib
 
 # eudev + udev rules
 cp o/$base/target/usr/bin/udevadm ../priv/bin
