@@ -41,12 +41,11 @@ Please file any issues if you run into any problems with your ARM64 platform. We
 1. Install [Flutter](https://docs.flutter.dev/get-started/install). See the top of this readme file for which version to use. (Flutter versions may change with Hex package versions!)
 2. Create a new Flutter app in your Mix project using: `flutter create flutter_app`.
 3. Add this package to your `deps` in `mix.exs`.
-4. Add the release steps to your existing firmware's `steps:`:
+4. OPTIONAL! Add the AOT compile release step to your existing firmware's `steps:`:
   ```elixir
     steps: [
       &Nerves.Release.init/1,
-      &NervesFlutterSupport.InstallRuntime.run/1, # REQUIRED!! - Add this to install runtime artifacts into the release!
-      &NervesFlutterSupport.BuildFlutterApp.run/1, # OPTIONAL - Add this if you want to auto-compile a flutter app!
+      &NervesFlutterSupport.BuildFlutterApp.run/1, # Add this if you want to auto-compile a flutter app!
       :assemble
     ],
   ```
