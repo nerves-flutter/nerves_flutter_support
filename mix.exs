@@ -1,4 +1,5 @@
 defmodule NervesFlutterSupport.MixProject do
+  alias Kernel.ParallelCompiler
   use Mix.Project
 
   def project do
@@ -7,7 +8,8 @@ defmodule NervesFlutterSupport.MixProject do
       version: "1.3.0",
       description: "Supporting libraries and runtime engine for Flutter on Nerves.",
       elixir: "~> 1.17",
-      compilers: Mix.compilers() ++ [:nerves_flutter_support],
+      compilers: [:nerves_flutter_prep | Mix.compilers()],
+      aliases: ["compile.nerves_flutter_prep": &nerves_flutter_prep/1],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: [
@@ -29,6 +31,19 @@ defmodule NervesFlutterSupport.MixProject do
         "Github" => "https://github.com/nerves-flutter/nerves_flutter_support"
       }
     ]
+  end
+
+  defp nerves_flutter_prep(_args) do
+    # A small hack to ensure that the tools and runtime binaries are present before actual compilation.
+    # If we don't run this before `Mix.compilers()`, the `priv/` directory content will not be included in later release steps.
+    # We only need these modules to download and cache artifacts, so we compile them before anything else.
+    ParallelCompiler.compile([
+      "lib/download_cache.ex",
+      "lib/downloader.ex",
+      "lib/util.ex",
+      "lib/tool_installer.ex"
+    ])
+    NervesFlutterSupport.ToolInstaller.perform_checks()
   end
 
   def application do

@@ -10,8 +10,6 @@ defmodule Mix.Tasks.Flutter.InstallTools do
 
   @impl Mix.Task
   def run(_argv) do
-    IO.puts("Checking tools and runtime libraries for Flutter...")
     :ok = ToolInstaller.perform_checks()
-    IO.puts("Tool check complete!")
   end
 end

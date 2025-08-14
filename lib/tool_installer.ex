@@ -28,6 +28,7 @@ defmodule NervesFlutterSupport.ToolInstaller do
   end
 
   def ensure_host_tools_installed() do
+    Logger.info("[NervesFlutterSupport] Ensuring host tools are installed...")
     if not Util.host_tools_installed?() do
       Logger.warning(
         "Host utilities for Flutter engine hash #{Downloader.get_flutter_hash()} were not found. Installing them now."
@@ -49,6 +50,7 @@ defmodule NervesFlutterSupport.ToolInstaller do
   end
 
   def ensure_runtime_installed() do
+    Logger.info("[NervesFlutterSupport] Ensuring runtime artifacts are installed...")
     if not Util.runtime_artifacts_installed?() do
       Logger.warning(
         "Runtime for Flutter engine hash #{Downloader.get_flutter_hash()} was not found. Installing it now."
