@@ -50,6 +50,14 @@ cp o/$base/target/usr/lib/libxkbcommon.so* ../priv/lib
 cp o/$base/target/usr/lib/libkmod.so* ../priv/lib
 cp o/$base/target/usr/lib/libfontconfig.so* ../priv/lib
 cp o/$base/target/usr/lib/libfreetype.so* ../priv/lib
+cp o/$base/target/usr/lib/libgallium* ../priv/lib
+cp o/$base/target/usr/lib/libz* ../priv/lib
+cp o/$base/target/usr/lib/libLLVM* ../priv/lib
+cp o/$base/target/usr/lib/libexpat* ../priv/lib
+cp o/$base/target/usr/lib/libgbm* ../priv/lib
+
+make -C o/$base legal-info
+cp -r o/$base/legal-info/licenses ../priv/licenses/
 
 # eudev + udev rules
 cp o/$base/target/usr/bin/udevadm ../priv/bin
