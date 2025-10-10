@@ -29,6 +29,9 @@ defmodule NervesFlutterSupport.Flutter.Engine do
 
     `:args` - A list of strings of extra command line arguments to pass to the Flutter embedder.
 
+    `:engine_switches` - A list of strings of extra command line arguments to pass to the Flutter engine.
+                    e.g. `"observatory-port=12345"`. See the Flutter embedder documentation for
+
     `:bundle_path` - A string that's a path to an AOT Flutter bundle. This will override the computed
                      path from `:app_name`.
   """
@@ -38,6 +41,7 @@ defmodule NervesFlutterSupport.Flutter.Engine do
     bundle_path = Keyword.get(args, :bundle_path)
     additional_env = Keyword.get(args, :env, %{})
     additional_args = Keyword.get(args, :args, [])
+    engine_switches = Keyword.get(args, :engine_switches, []) |> process_engine_switches()
     bin_path = get_embedder_path()
     args = create_flutter_args(app_name, bundle_path) ++ additional_args
     env = create_flutter_env(additional_env)
@@ -46,6 +50,8 @@ defmodule NervesFlutterSupport.Flutter.Engine do
     Logger.debug("Flutter Args: #{inspect(args)}")
 
     :ok = Udev.setup()
+
+    startup_env = Map.merge(NervesTimeZones.tz_environment(), env) |> Map.merge(engine_switches)
 
     Supervisor.child_spec(
       {MuonTrap.Daemon,
@@ -57,7 +63,7 @@ defmodule NervesFlutterSupport.Flutter.Engine do
            stderr_to_stdout: true,
            log_output: :info,
            log_prefix: "[flutter]",
-           env: Map.merge(NervesTimeZones.tz_environment(), env)
+           env: startup_env
          ]
        ]},
       id: :flutter_ui,
@@ -104,5 +110,15 @@ defmodule NervesFlutterSupport.Flutter.Engine do
 
   defp get_lib_path() do
     :code.priv_dir(:nerves_flutter_support) |> Path.join("lib/")
+  end
+
+  def process_engine_switches(switch_list) do
+    {switch_map, _} =
+      Enum.reduce(switch_list, {%{}, 1}, fn switch_string, {switch_map, idx} ->
+        key = "FLUTTER_ENGINE_SWITCH_#{idx}"
+        {Map.put(switch_map, key, switch_string), idx + 1}
+      end)
+
+    switch_map
   end
 end
