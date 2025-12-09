@@ -2,6 +2,16 @@
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.1
+
+* Changes
+  * Removes LLVMPipe backend from Gallium build. This means we no longer depend on or ship the entire LLVM library.
+  * Include `libfontconfig` in artifact package.
+  * Include `libfreetype` in artifact package.
+  * Bump Buildroot to `2025.05.2`.
+  * Add `:engine_switches` option to the `Engine` module. This allows users to pass Flutter engine flags to the embedder.
+  * Copy legal info into artifact package.
+
 ## v1.3.0
 
 * Changes
