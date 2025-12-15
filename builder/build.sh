@@ -28,6 +28,7 @@ if [[ $? != 0 ]]; then
 fi
 
 mkdir -p ../priv/lib
+mkdir -p ../priv/lib/gbm
 mkdir -p ../priv/bin
 mkdir -p ../priv/libinput-quirks
 mkdir -p ../priv/etc/udev/hwdb.d
@@ -54,6 +55,7 @@ cp o/$base/target/usr/lib/libgallium* ../priv/lib
 cp o/$base/target/usr/lib/libz* ../priv/lib
 cp o/$base/target/usr/lib/libexpat* ../priv/lib
 cp o/$base/target/usr/lib/libgbm* ../priv/lib
+cp o/$base/target/usr/lib/gbm/dri_gbm.so ../priv/lib/gbm
 
 make -C o/$base legal-info
 cp -r o/$base/legal-info/licenses ../priv/licenses/
