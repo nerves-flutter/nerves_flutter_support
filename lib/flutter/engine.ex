@@ -74,6 +74,7 @@ defmodule NervesFlutterSupport.Flutter.Engine do
   defp create_flutter_env(additional_env) do
     %{
       "ON_EMBEDDED_DEVICE" => "1",
+      "GBM_BACKENDS_PATH" => "#{get_lib_path()}/gbm",
       "XKB_CONFIG_ROOT" => get_xkb_path(),
       "LD_LIBRARY_PATH" => "#{get_lib_path()}:#{System.get_env("LD_LIBRARY_PATH")}",
       "LIBINPUT_QUIRKS_DIR" => get_quirks_path()
