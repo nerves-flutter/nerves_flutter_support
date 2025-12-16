@@ -120,6 +120,12 @@ defmodule NervesFlutterSupport.Flutter.Engine do
         {Map.put(switch_map, key, switch_string), idx + 1}
       end)
 
-    switch_map
+    key_len = length(switch_map)
+
+    if key_len > 0 do
+      Map.put(switch_map, "FLUTTER_ENGINE_SWITCHES", key_len)
+    else
+      %{}
+    end
   end
 end
