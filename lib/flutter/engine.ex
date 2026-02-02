@@ -113,19 +113,14 @@ defmodule NervesFlutterSupport.Flutter.Engine do
     :code.priv_dir(:nerves_flutter_support) |> Path.join("lib/")
   end
 
-  def process_engine_switches(switch_list) do
-    {switch_map, _} =
-      Enum.reduce(switch_list, {%{}, 1}, fn switch_string, {switch_map, idx} ->
-        key = "FLUTTER_ENGINE_SWITCH_#{idx}"
-        {Map.put(switch_map, key, switch_string), idx + 1}
+  defp process_engine_switches([]), do: %{}
+
+  defp process_engine_switches(switch_list) do
+    {switch_map, count} =
+      Enum.reduce(switch_list, {%{}, 1}, fn switch_string, {acc, idx} ->
+        {Map.put(acc, "FLUTTER_ENGINE_SWITCH_#{idx}", switch_string), idx + 1}
       end)
 
-    key_len = length(switch_map)
-
-    if key_len > 0 do
-      Map.put(switch_map, "FLUTTER_ENGINE_SWITCHES", key_len)
-    else
-      %{}
-    end
+    Map.put(switch_map, "FLUTTER_ENGINE_SWITCHES", count - 1)
   end
 end
