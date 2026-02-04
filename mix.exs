@@ -41,10 +41,10 @@ defmodule NervesFlutterSupport.MixProject do
   defp deps do
     [
       {:castore, "~> 1.0"},
-      {:jason, "~> 1.4.0"},
-      {:muontrap, "~> 1.6.0"},
-      {:nerves_runtime, "~> 0.13.0"},
-      {:nerves_time_zones, "~> 0.3.0"},
+      {:jason, "~> 1.4"},
+      {:muontrap, "~> 1.6"},
+      {:nerves_runtime, "~> 0.13"},
+      {:nerves_time_zones, "~> 0.3"},
       {:yaml_elixir, "~> 2.11"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
