@@ -2,6 +2,12 @@
 
 This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.3.2
+
+* Changes
+  * Relax versions of deps so downstream apps can use minor version bumps.
+  * Fix engine switch map code ([#18](https://github.com/nerves-flutter/nerves_flutter_support/pull/18))
+
 ## v1.3.1
 
 * Changes
