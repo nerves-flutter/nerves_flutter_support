@@ -1,19 +1,23 @@
-FROM --platform=linux/amd64 debian:bookworm-20240423
-RUN apt update
-RUN apt install -y wget curl xz-utils git
-RUN git config --global --add safe.directory /flutter
+FROM debian:bookworm-20240423
 
 ENV FLUTTER_VERSION="3.32.8"
-RUN wget --no-verbose https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$FLUTTER_VERSION-stable.tar.xz
-RUN tar xf flutter_linux_$FLUTTER_VERSION-stable.tar.xz -C /
 ENV PATH="$PATH:/flutter/bin"
 
-RUN flutter --disable-analytics
-RUN dart --disable-analytics
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       wget curl xz-utils git ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && wget --no-verbose \
+       "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" \
+    && tar xf "flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" -C / \
+    && rm "flutter_linux_${FLUTTER_VERSION}-stable.tar.xz" \
+    && git config --global --add safe.directory /flutter \
+    && flutter --disable-analytics \
+    && dart --disable-analytics
 
 RUN mkdir -p /tools/bin
-COPY bin/build_aot.sh /tools/bin
-COPY bin/gen_snapshot /tools/bin
+COPY bin/build_aot.sh /tools/bin/
+COPY bin/gen_snapshot /tools/bin/
 
 WORKDIR /data
-ENTRYPOINT /tools/bin/build_aot.sh /tools ${APP_PACKAGE_NAME} /flutter/bin
+ENTRYPOINT ["/bin/sh", "-c", "/tools/bin/build_aot.sh /tools \"${APP_PACKAGE_NAME}\" /flutter/bin"]
