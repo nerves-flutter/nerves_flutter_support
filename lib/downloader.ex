@@ -1,6 +1,6 @@
 defmodule NervesFlutterSupport.Downloader do
   @moduledoc """
-  Module that contains functions to download files from the `nerves_flutter_support` CDN and Girhub.
+  Module that contains functions to download files from the `nerves_flutter_support` CDN and GitHub.
   """
   alias NervesFlutterSupport.DownloadCache
   require Logger
