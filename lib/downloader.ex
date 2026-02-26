@@ -1,6 +1,6 @@
 defmodule NervesFlutterSupport.Downloader do
   @moduledoc """
-  Module that contains functions to download files from the `nerves_flutter_support` CDN and Girhub.
+  Module that contains functions to download files from the `nerves_flutter_support` CDN and GitHub.
   """
   alias NervesFlutterSupport.DownloadCache
   require Logger
@@ -146,7 +146,7 @@ defmodule NervesFlutterSupport.Downloader do
   end
 
   defp get_target_arch() do
-    # We currently only support ARM64 targes
+    # We currently only support ARM64 targets
     :aarch64
   end
 end

@@ -3,7 +3,7 @@
 # Script for cloning or downloading a buildroot release. If the buildroot
 # release has been cached, use that one. If not, clone and cache the results.
 #
-# clone_or_dnload.sh <Clone URL> <Hash tag> <Download directory>
+# clone_or_download.sh <Clone URL> <Hash tag> <Download directory>
 
 set -e
 export LC_ALL=C
