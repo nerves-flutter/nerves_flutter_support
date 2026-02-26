@@ -15,7 +15,7 @@ defmodule NervesFlutterSupport.InstallRuntime do
       :ok = ToolInstaller.perform_checks()
     else
       Mix.shell().info(
-        "NERVES_FLUTTER_SKIP_TOOL_INSTALL was set! This will skip downloading runtime artficats..."
+        "NERVES_FLUTTER_SKIP_TOOL_INSTALL was set! This will skip downloading runtime artifacts..."
       )
     end
 

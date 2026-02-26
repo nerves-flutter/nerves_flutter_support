@@ -146,7 +146,7 @@ defmodule NervesFlutterSupport.Downloader do
   end
 
   defp get_target_arch() do
-    # We currently only support ARM64 targes
+    # We currently only support ARM64 targets
     :aarch64
   end
 end

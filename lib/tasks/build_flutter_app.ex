@@ -3,7 +3,7 @@ defmodule Mix.Tasks.Flutter.BuildAot do
   @moduledoc """
   Builds a Flutter app using the version of Flutter shipped with `nerves_flutter_support`.
 
-  Usage: `mix flutter.build_aot /path/to/flutter_app /output/bunlde/dir`
+  Usage: `mix flutter.build_aot /path/to/flutter_app /output/bundle/dir`
   """
 
   use Mix.Task

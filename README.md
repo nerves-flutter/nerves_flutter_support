@@ -53,7 +53,7 @@ Please file any issues if you run into any problems with your ARM64 platform. We
 5. Run `mix firmware` as you normally would, if all is well, you should see you Flutter app build and emit a bundle into your `priv/` directory.
 6. To run the Flutter app you can add the following to your `Application` or `Supervisor` children:
   ```elixir
-  # With no options, your Flutter app bundle is expreted to be in `priv/flutter_app`
+  # With no options, your Flutter app bundle is expected to be in `priv/flutter_app`
   NervesFlutterSupport.Flutter.Engine.create_child(
     app_name: :my_flutter_app,
   )
