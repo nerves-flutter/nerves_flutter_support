@@ -62,7 +62,7 @@ ${FLUTTER_SDK}/cache/dart-sdk/bin/dartaotruntime \
 flutter --version --no-version-check
 $SELF_PATH/bin/gen_snapshot --version
 
-# Build the ARM64 (simarm) shared library (AOT compilied Dart code)
+# Build the ARM64 (simarm) shared library (AOT compiled Dart code)
 $SELF_PATH/bin/gen_snapshot \
   --deterministic \
   --snapshot_kind=app-aot-elf \

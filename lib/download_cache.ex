@@ -67,7 +67,7 @@ defmodule NervesFlutterSupport.DownloadCache do
 
       {:error, error_reason} ->
         Logger.error("Failed to create the cache directory: #{path}! (#{error_reason})")
-        raise "Failed to rease cache directory."
+        raise "Failed to create cache directory."
     end
   end
 end

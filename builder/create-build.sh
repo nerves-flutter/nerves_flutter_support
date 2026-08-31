@@ -76,7 +76,7 @@ if [[ ! -e $BASE_DIR ]]; then
 fi
 
 # Location to download files to so that they don't need
-# to be redownloaded when working a lot with buildroot
+# to be re-downloaded when working a lot with buildroot
 #
 # NOTE: If you are a heavy Buildroot user and have an alternative location,
 #       override this environment variable or symlink this directory.

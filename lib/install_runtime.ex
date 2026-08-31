@@ -1,10 +1,10 @@
 defmodule NervesFlutterSupport.InstallRuntime do
   @moduledoc """
   A Mix release step that copies the runtime artifacts from `NervesFlutterSupport`'s `priv` directory
-  into the properly location in the release `_build` directory. This is required, because sometimes `mix`
+  into the proper location in the release `_build` directory. This is required, because sometimes `mix`
   will not re-copy artifacts if they were not present at the initial `mix deps.get` command.
 
-  Since we install runtime artifacts afterwords, this step ensures they wind up in the final release bundle.
+  Since we install runtime artifacts afterwards, this step ensures they wind up in the final release bundle.
   """
 
   alias NervesFlutterSupport.ToolInstaller
@@ -15,7 +15,7 @@ defmodule NervesFlutterSupport.InstallRuntime do
       :ok = ToolInstaller.perform_checks()
     else
       Mix.shell().info(
-        "NERVES_FLUTTER_SKIP_TOOL_INSTALL was set! This will skip downloading runtime artficats..."
+        "NERVES_FLUTTER_SKIP_TOOL_INSTALL was set! This will skip downloading runtime artifacts..."
       )
     end
 
